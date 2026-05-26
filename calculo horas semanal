@@ -1,0 +1,61 @@
+# ==================================================
+# PROYECTO: REGISTRO DE HORAS TRABAJADAS
+# Autor: Walter Oswaldo Galvis
+# Descripción: Calcula y clasifica horas semanales
+# ==================================================
+
+# --------------------------
+# 1. DEFINICIÓN DE DATOS
+# Matriz: [Nombre, Lunes, Martes, Miércoles, Jueves, Viernes]
+# --------------------------
+matriz_recursos = [
+    ["María", 8, 9, 8, 8, 7],
+    ["Pedro", 10, 9, 8, 9, 8],
+    ["Lucía", 7, 7, 8, 7, 7],
+    ["Jorge", 8, 8, 8, 8, 9]
+]
+
+# Constante de lógica de negocio
+UMBRAL_HORAS = 40
+
+# --------------------------
+# 2. MÓDULO / FUNCIÓN
+# --------------------------
+def calcular_y_clasificar(registro):
+    """
+    Función que recibe una lista con los datos de un recurso,
+    calcula el total de horas y retorna la clasificación.
+    """
+    # Extraer nombre (primera posición de la lista)
+    nombre = registro[0]
+    
+    # Calcular suma total de horas (posiciones 1 a 5)
+    total_horas = sum(registro[1:6])
+    
+    # Lógica de clasificación
+    if total_horas > UMBRAL_HORAS:
+        clasificacion = "Sobretiempo"
+    else:
+        clasificacion = "Horario Estándar o inferior"
+    
+    # Devolver resultados
+    return nombre, total_horas, clasificacion
+
+# --------------------------
+# 3. EJECUCIÓN Y SALIDA
+# --------------------------
+print("=" * 50)
+print("RESUMEN DE HORAS TRABAJADAS - SEMANAL")
+print("=" * 50)
+
+# Recorrer cada recurso almacenado en la matriz
+for recurso in matriz_recursos:
+    # Llamada al módulo definido arriba
+    nombre, total, tipo_jornada = calcular_y_clasificar(recurso)
+    
+    # Imprimir resultados formateados
+    print(f"Recurso: {nombre}")
+    print(f"Total horas semanales: {total}")
+    print(f"Clasificación: {tipo_jornada}")
+    print("-" * 50)
+
